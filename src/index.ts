@@ -1,6 +1,7 @@
 import fastify from 'fastify'
 import { knex } from './database'
 import crypto from 'node:crypto'
+import { env } from './env'
 const app = fastify({ logger: true })
 
 app.get('/', async (request, reply) => {
@@ -21,7 +22,7 @@ app.get('/hello', async () => {
 })
 const start = async () => {
   try {
-    await app.listen({ port: 3000 })
+    await app.listen({ port: env.PORT })
     console.log('Servidor rodando na porta 3000')
   } catch (err) {
     app.log.error(err)
